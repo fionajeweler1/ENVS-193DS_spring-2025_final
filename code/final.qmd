@@ -133,4 +133,51 @@ sst_clean |>
 
 ```
 
+# Part 3. Data Analysis
 
+## a. 
+In this dataset, the 1s and 0s represent nest box occupancy: a 1 indicates the box was occupied by a specific species (or was empty), and a 0 means it was not. The columns correspond to species, Swift Parrot (sp), Common Starling (cs), Tree Martin (tm), and e for empty boxes. 
+
+## b. 
+The Swift Parrot is the critically endangered target species that the nest boxes were designed to support. On the other hand, Common Starlings (an introduced species) and Tree Martins (a native competitor) are non-target species who may exploit the nest boxes, potentially impacting the conservation success for the Swift Parrots. 
+
+## c. 
+The two seasons refer to the 2016 breeding season when newly deployed nest boxes were first installed, and 2019 when the same boxes had been left in place for multiple years. hese seasons compare occupancy shortly after they were deployed versus with more established boxes, showing that the Common Starlings and Tree Martins used the older boxes more extensively than the newly deployed ones. 
+
+## d. 
+```{r}
+# Clean data 
+nest_boxes <- nest_boxes |> 
+  mutate(
+    season = factor(season),              # season as a factor
+    edge_distance = as.numeric(edge_distance)  # ensure edge_distance is numeric
+  )
+
+# Model 1: Null model
+model_1 <- glm(sp ~ 1, data = nest_boxes, family = "binomial")
+
+# Model 2: Saturated model with interaction
+model_2 <- glm(sp ~ season * edge_distance, data = nest_boxes, family = "binomial")
+
+# Model 3: Season only
+model_3 <- glm(sp ~ season, data = nest_boxes, family = "binomial")
+
+# Model 4: Distance only
+model_4 <- glm(sp ~ edge_distance, data = nest_boxes, family = "binomial")
+
+# Create a model overview table
+model_table <- tibble::tibble(
+  `Model number` = c("Model 1", "Model 2", "Model 3", "Model 4"),
+  `Season included` = c("No", "Yes", "Yes", "No"),
+  `Distance to forest edge included` = c("No", "Yes", "No", "Yes"),
+  `Model description` = c(
+    "Null model (no predictors)",
+    "Saturated model (interaction between season and edge_distance)",
+    "Main effect of season only",
+    "Main effect of edge_distance only"
+  )
+)
+
+# Display the table
+model_table
+```
