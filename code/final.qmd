@@ -28,6 +28,8 @@ library(DHARMa)
 library(MuMIn)
 library(broom)
 library(performance)
+library(knitr)
+library(MuMIn)
 
 #Read in sea surface temperature dataset
 sst <- read_csv(here::here("Data", "SST_update2023.csv"))
@@ -168,18 +170,77 @@ model_4 <- glm(sp ~ edge_distance, data = nest_boxes, family = "binomial")
 # Create a model overview table
 model_table <- tibble::tibble(
   `Model number` = c("Model 1", "Model 2", "Model 3", "Model 4"),
-  `Season included` = c("No", "Yes", "Yes", "No"),
-  `Distance to forest edge included` = c("No", "Yes", "No", "Yes"),
-  `Model description` = c(
-    "Null model (no predictors)",
-    "Saturated model (interaction between season and edge_distance)",
-    "Main effect of season only",
-    "Main effect of edge_distance only"
+  `Season` = c("", "X", "X", ""),
+  `Distance to forest edge` = c("", "X", "", "X"),
+  `Predictor list` = c(
+    "no predictors (null model)",
+    "season and distance with interaction (saturated model)",
+    "season only",
+    "distance only"
   )
 )
 
-# Display the table
-model_table
+# Display the table nicely in HTML
+kable(model_table, align = "c")
 ```
 
+## e. 
+```{r, echo = TRUE}
 
+# Run all models (no output shown)
+model_1 <- glm(sp ~ 1, data = nest_boxes, family = "binomial")                            # Null model
+model_2 <- glm(sp ~ season * edge_distance, data = nest_boxes, family = "binomial")       # Saturated model with interaction
+model_3 <- glm(sp ~ season, data = nest_boxes, family = "binomial")                       # Main effect of season
+model_4 <- glm(sp ~ edge_distance, data = nest_boxes, family = "binomial")                # Main effect of distance
+
+```
+
+## f. 
+```{r model1-diagnostics}
+# Simulate residuals for the null model
+sim_1 <- simulateResiduals(fittedModel = model_1)
+
+# Plot the residual diagnostics without the default title and text
+plot(sim_1, main = "", annotate = FALSE)
+
+```
+
+```{r model2-diagnostics}
+# Simulate residuals for the model with interaction between season and edge_distance
+sim_2 <- simulateResiduals(fittedModel = model_2)
+
+# Plot the residual diagnostics without the default title and text
+plot(sim_2, main = "", annotate = FALSE)
+
+```
+
+```{r model3-diagnostics}
+# Simulate residuals for the model with only season as a predictor
+sim_3 <- simulateResiduals(fittedModel = model_3)
+
+# Plot the residual diagnostics without default title and annotation text
+plot(sim_3, main = "", annotate = FALSE)
+
+```
+
+```{r model4-diagnostics}
+# Simulate residuals for the model with only edge_distance as a predictor
+sim_4 <- simulateResiduals(fittedModel = model_4)
+
+# Plot the residual diagnostics without default annotations
+plot(sim_4, main = "", annotate = FALSE)
+
+```
+
+## g. 
+```{r}
+# Compare AIC values for all models
+aic_results <- AIC(model_1, model_2, model_3, model_4)
+
+# View the results
+print(aic_results)
+```
+
+The best model as determined by Akaike’s Information Criterion (AIC) was the saturated model, which included both season and edge distance as predictors, as well as their interaction. This model had the lowest AIC value (226.85), indicating it best balances model fit and complexity. The response variable in this model was nest box occupancy by Swift Parrots (1 = occupied, 0 = not occupied).
+
+## h. 
