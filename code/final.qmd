@@ -1,0 +1,19 @@
+---
+title: "ENVS 193DS Final"
+author: "Fiona Jeweler"
+date: "2025-06-11"
+format:
+  html:
+    toc: true
+    toc-location: left
+    theme: cosmo
+    number-sections: true
+    smooth-scroll: true
+    table-scroll: true
+    embed-resources: true
+---
+
+**Name:** Fiona Jeweler  
+**Date:** June 11th, 2025
+
+
