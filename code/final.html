@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -3049,7 +3083,26 @@ vertical-align: -.125em;
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
 <div id="quarto-sidebar-toc-left" class="sidebar toc-left">
-  
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#problem-1.-research-writing" id="toc-problem-1.-research-writing" class="nav-link active" data-scroll-target="#problem-1.-research-writing"><span class="header-section-number">1</span> Problem 1. Research Writing</a>
+  <ul class="collapse">
+  <li><a href="#a." id="toc-a." class="nav-link" data-scroll-target="#a."><span class="header-section-number">1.1</span> a.</a></li>
+  <li><a href="#b." id="toc-b." class="nav-link" data-scroll-target="#b."><span class="header-section-number">1.2</span> b.</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">1.2.1</span> 1:</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">1.2.2</span> 2:</a></li>
+  </ul></li>
+  <li><a href="#c." id="toc-c." class="nav-link" data-scroll-target="#c."><span class="header-section-number">1.3</span> c. </a>
+  <ul class="collapse">
+  <li><a href="#part-1-revised" id="toc-part-1-revised" class="nav-link" data-scroll-target="#part-1-revised"><span class="header-section-number">1.3.1</span> Part 1 revised:</a></li>
+  <li><a href="#part-2-revised" id="toc-part-2-revised" class="nav-link" data-scroll-target="#part-2-revised"><span class="header-section-number">1.3.2</span> Part 2 revised:</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
@@ -3088,6 +3141,125 @@ vertical-align: -.125em;
 
 <p><strong>Name:</strong> Fiona Jeweler<br>
 <strong>Date:</strong> June 11th, 2025</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Loading packages </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: &#39;janitor&#39;
+
+The following objects are masked from &#39;package:stats&#39;:
+
+    chisq.test, fisher.test</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at /Users/fionajeweler/Library/Containers/com.hp.SmartMac/Data/Documents/ENVS 193DS/Github/ENVS-193DS-Final/ENVS-193DS_spring-2025_final</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>This is DHARMa 0.4.7. For overview type &#39;?DHARMa&#39;. For recent changes, type news(package = &#39;DHARMa&#39;)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 methods overwritten by &#39;broom&#39;:
+  method        from 
+  nobs.fitdistr MuMIn
+  nobs.multinom MuMIn</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Read in sea surface temperature dataset</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;SST_update2023.csv&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 291384 Columns: 5
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr  (1): site
+dbl  (3): latitude, longitude, temp
+date (1): date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the Swift Parrot nest box data</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>nest_boxes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;occdist.csv&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 227 Columns: 10
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (4): box, box occupant, eventID, repeated use
+dbl (6): edge distance, season, sp, cs, e, tm
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean column names for consistency</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>nest_boxes <span class="ot">&lt;-</span> nest_boxes <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(nest_boxes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 227
+Columns: 10
+$ box           &lt;chr&gt; &quot;boxrh00&quot;, &quot;boxrh49&quot;, &quot;boxrh55&quot;, &quot;boxrh56&quot;, &quot;boxrh58&quot;, &quot;…
+$ box_occupant  &lt;chr&gt; &quot;common starling&quot;, &quot;common starling&quot;, &quot;common starling&quot;,…
+$ edge_distance &lt;dbl&gt; 287, 35, 84, 128, 152, 92, 51, 222, 160, 145, 289, 406, …
+$ season        &lt;dbl&gt; 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2019, 2019, 20…
+$ event_id      &lt;chr&gt; &quot;boxrh002016&quot;, &quot;boxrh492016&quot;, &quot;boxrh552016&quot;, &quot;boxrh56201…
+$ repeated_use  &lt;chr&gt; &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;n…
+$ sp            &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ cs            &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ e             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ tm            &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</code></pre>
+</div>
+</div>
+<section id="problem-1.-research-writing" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Problem 1. Research Writing</h1>
+<section id="a." class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="a."><span class="header-section-number">1.1</span> a.</h2>
+<p>In part 1, the researcher likely used a correlation test (such as a Pearson’s correlation coefficient), depending on the distributiuon of the data. I can infer this because of the phrasing “correlation between distance from headwater (km) and annual total nitrogen load (kg year⁻¹).” In part 2, they likely used a one-way ANOVA test to decide whether the mean nitrogen loads differ among the five sources: urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands. This is suggested by the phrasing “difference in average nitrogen load between sources.”</p>
+</section>
+<section id="b." class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="b."><span class="header-section-number">1.2</span> b.</h2>
+<p>To provide better context for part 2, my co-worker could include:</p>
+<section id="section" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="section"><span class="header-section-number">1.2.1</span> 1:</h3>
+<p>Tukey’s HSD - since the ANOVA tells us only that at least one group differs from the others, a post-hoc test would tell us which specific source categories differ significantly in nitrogen load. This information adds clarity to the biological interpretation and lets us know where intervention measures might be needed.</p>
+</section>
+<section id="section-1" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">1.2.2</span> 2:</h3>
+<p>Cohen’s f: Knowing the p-value tells us whether the result is statistically significant, but not how meaningful the difference is. An effect size like a cohen’s f test could help us evaluate the magnitude of the difference in nitrogen load between sources and whether it is ecologically significant.</p>
+</section>
+</section>
+<section id="c." class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="c."><span class="header-section-number">1.3</span> c. </h2>
+<section id="part-1-revised" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="part-1-revised"><span class="header-section-number">1.3.1</span> Part 1 revised:</h3>
+<p>We found that annual total nitrogen load increased with distance from the river’s headwaters, suggesting downstream areas receive more nitrogen, potentially due to cumulative runoff. (Pearson’s correlation coefficient, r = correlation coefficient, p = 0.03, α = significance level).</p>
+</section>
+<section id="part-2-revised" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="part-2-revised"><span class="header-section-number">1.3.2</span> Part 2 revised:</h3>
+<p>We found that average nitrogen load differed significantly among sources, suggesting some sources (like fertilizer or wastewater) may contribute more nitrogen to the system than others. (One-way ANOVA, F = test statistic, df = degrees of freedom, p = 0.02, α = significance level).</p>
+</section>
+</section>
+</section>
 
 </main>
 <!-- /main column -->

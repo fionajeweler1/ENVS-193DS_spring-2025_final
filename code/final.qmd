@@ -16,4 +16,49 @@ format:
 **Name:** Fiona Jeweler  
 **Date:** June 11th, 2025
 
+```{r Load packages and data, include=TRUE}
+#Loading packages 
+library(tidyverse)
+library(readr)
+library(janitor)
+library(ggplot2)
+library(lubridate)
+library(here)
+library(DHARMa)
+library(MuMIn)
+library(broom)
+library(performance)
+
+#Read in sea surface temperature dataset
+sst <- read_csv(here::here("Data", "SST_update2023.csv"))
+
+# Read in the Swift Parrot nest box data
+nest_boxes <- read_csv(here("Data", "occdist.csv"))
+# Clean column names for consistency
+nest_boxes <- nest_boxes |> 
+  clean_names()
+glimpse(nest_boxes)
+```
+
+# Problem 1. Research Writing
+
+## a. 
+In part 1, the researcher likely used a correlation test (such as a Pearson's correlation coefficient), depending on the distributiuon of the data. I can infer this because of the phrasing "correlation between distance from headwater (km) and annual total nitrogen load (kg year⁻¹).” In part 2, they likely used a one-way ANOVA test to decide whether the mean nitrogen loads differ among the five sources: urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands. This is suggested by the phrasing “difference in average nitrogen load between sources.”
+
+## b. 
+To provide better context for part 2, my co-worker could include:
+
+### 1: 
+Tukey's HSD - since the ANOVA tells us only that at least one group differs from the others, a post-hoc test would tell us which specific source categories differ significantly in nitrogen load. This information adds clarity to the biological interpretation and lets us know where intervention measures might be needed. 
+
+### 2: 
+Cohen's f: Knowing the p-value tells us whether the result is statistically significant, but not how meaningful the difference is. An effect size like a cohen's f test could help us evaluate the magnitude of the difference in nitrogen load between sources and whether it is ecologically significant. 
+
+## c. 
+
+### Part 1 revised: 
+We found that annual total nitrogen load increased with distance from the river’s headwaters, suggesting downstream areas receive more nitrogen, potentially due to cumulative runoff. (Pearson's correlation coefficient, r = correlation coefficient, p = 0.03, α = significance level). 
+
+### Part 2 revised: 
+We found that average nitrogen load differed significantly among sources, suggesting some sources (like  fertilizer or wastewater) may contribute more nitrogen to the system than others. (One-way ANOVA, F = test statistic, df = degrees of freedom, p = 0.02, α = significance level). 
 
