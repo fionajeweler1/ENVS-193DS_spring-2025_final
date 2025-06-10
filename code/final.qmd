@@ -181,3 +181,5 @@ model_table <- tibble::tibble(
 # Display the table
 model_table
 ```
+
+

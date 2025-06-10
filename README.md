@@ -19,7 +19,7 @@ This repository contains my final assignment for ENVS 193DS, Spring 2025 at UC S
 
 ## Rendered output
 
-[Click here to view the rendered final project](https://fionajeweler1.github.io/ENVS-193DS_spring-2025_final/)
+[Click here to view the rendered final project](https://fionajeweler1.github.io/ENVS-193DS_spring-2025_final/code/final.html)
 
 This output includes:
 - Annotated code chunks for all problems
