@@ -62,3 +62,75 @@ We found that annual total nitrogen load increased with distance from the river�
 ### Part 2 revised: 
 We found that average nitrogen load differed significantly among sources, suggesting some sources (like  fertilizer or wastewater) may contribute more nitrogen to the system than others. (One-way ANOVA, F = test statistic, df = degrees of freedom, p = 0.02, α = significance level). 
 
+# Problem 2. Data Visualization 
+```{r CLean Data, include=TRUE}
+# Clean and summarize SST data to match required structure
+sst_clean <- sst |> 
+  mutate(date = as.Date(date)) |> 
+  filter(year(date) >= 2018 & year(date) <= 2023) |> 
+  mutate(
+    year = factor(year(date)),
+    month = factor(month(date, label = TRUE, abbr = TRUE), 
+                   levels = month.abb, ordered = TRUE)
+  ) |> 
+  group_by(year, month) |> 
+  summarise(mean_monthly_sst = mean(temp, na.rm = TRUE)) |> 
+  ungroup()
+
+# Show 5 random rows
+slice_sample(sst_clean, n = 5)
+
+# Show structure of the data
+str(sst_clean)
+```
+
+```{r Create visualization, include=TRUE}
+
+# Filter the subset of years shown in the original figure
+sst_clean |> 
+  filter(year %in% c("2018", "2019", "2020", "2021", "2022", "2023")) |> 
+  ggplot(aes(x = month, y = mean_monthly_sst, group = year, color = year)) +
+  
+  # Two geometries: lines and points
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  
+  # Y-axis label
+  scale_y_continuous(limits = c(13, 20)) +
+  
+  # Custom color scale: single color gradient from light to dark (e.g., blue)
+  scale_color_manual(
+    values = c(
+      "2018" = "#c6dbef",
+      "2019" = "#9ecae1",
+      "2020" = "#6baed6",
+      "2021" = "#4292c6",
+      "2022" = "#2171b5",
+      "2023" = "#084594"
+    )
+  ) +
+
+  # Axis and legend labels
+  labs(
+    x = "Month",
+    y = "Mean monthly sea surface temperature (°C)",
+    color = "Year"
+  ) +
+
+  # Theme settings for panel border and background
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position = c(0.15, 0.75),          # Legend inside panel
+    legend.background = element_rect(fill = "white", color = "black"),
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 1),
+    panel.grid.major = element_line(color = "gray90"),
+    panel.grid.minor = element_blank(),
+    axis.text = element_text(size = 11),
+    axis.title = element_text(size = 13),
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10)
+  )
+
+```
+
+
