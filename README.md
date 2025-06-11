@@ -7,15 +7,13 @@ This repository contains my final assignment for ENVS 193DS, Spring 2025 at UC S
 ## Data and File Overview
 
 - **Code folder**:  
-  Contains the Quarto document `ENVS-193DS_spring-2025_final.qmd`, which includes all R code, analysis, and figures.  
-  The rendered HTML file and its accompanying support folder (`*_files/`) are also here.
+  - final.qmd: The Quarto document containing all annotated code, analysis, and figure generation.
+  - final.html: The rendered output of the Quarto file.
+  - Rplot.png: My affective data visualization showing the relationship between activity and sleep onset time.
 
 - **Data folder**:  
-  - `SST_update2023.csv`: Sea surface temperature data from the SBC LTER.  
-  - `occdist.csv`: Nest box occupancy data used to model Swift Parrot habitat use.
-
-- **Docs folder**:  
-  This folder is used by GitHub Pages to serve the rendered HTML output.
+  - SST_update2023.csv: Sea surface temperature data from the SBC LTER.
+  - occdist.csv: Nest box occupancy data used to model Swift Parrot habitat use.
 
 ## Rendered output
 
@@ -25,7 +23,7 @@ This output includes:
 - Annotated code chunks for all problems
 - Statistical summaries and interpretations
 - A ggplot-based time series visualization of SST
-- Model results and predictions for Swift Parrot nest box occupancy
+- Generalized linear model results and predictions for Swift Parrot nest box occupancy
 - A reflective section comparing affective vs. exploratory data visualizations
 
 ---
