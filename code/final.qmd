@@ -16,7 +16,7 @@ format:
 **Name:** Fiona Jeweler  
 **Date:** June 11th, 2025
 
-```{r Load packages and data, include=TRUE}
+```{r Load packages and data, include=TRUE, message = FALSE, warning = FALSE}
 #Loading packages 
 library(tidyverse)
 library(readr)
@@ -65,7 +65,7 @@ We found that annual total nitrogen load increased with distance from the river�
 We found that average nitrogen load differed significantly among sources, suggesting some sources (like  fertilizer or wastewater) may contribute more nitrogen to the system than others. (One-way ANOVA, F = test statistic, df = degrees of freedom, p = 0.02, α = significance level). 
 
 # Problem 2. Data Visualization 
-```{r CLean Data, include=TRUE}
+```{r CLean Data, include=TRUE, message = FALSE, warning = FALSE}
 # Clean and summarize SST data to match required structure
 sst_clean <- sst |> 
   mutate(date = as.Date(date)) |> 
@@ -86,7 +86,7 @@ slice_sample(sst_clean, n = 5)
 str(sst_clean)
 ```
 
-```{r Create visualization, include=TRUE}
+```{r Create visualization, include=TRUE, message = FALSE, warning = FALSE}
 
 # Filter the subset of years shown in the original figure
 sst_clean |> 
@@ -144,10 +144,10 @@ In this dataset, the 1s and 0s represent nest box occupancy: a 1 indicates the b
 The Swift Parrot is the critically endangered target species that the nest boxes were designed to support. On the other hand, Common Starlings (an introduced species) and Tree Martins (a native competitor) are non-target species who may exploit the nest boxes, potentially impacting the conservation success for the Swift Parrots. 
 
 ## c. 
-The two seasons refer to the 2016 breeding season when newly deployed nest boxes were first installed, and 2019 when the same boxes had been left in place for multiple years. hese seasons compare occupancy shortly after they were deployed versus with more established boxes, showing that the Common Starlings and Tree Martins used the older boxes more extensively than the newly deployed ones. 
+The two seasons refer to the 2016 breeding season when newly deployed nest boxes were first installed, and 2019 when the same boxes had been left in place for multiple years. These seasons compare occupancy shortly after they were deployed versus with more established boxes, showing that the Common Starlings and Tree Martins used the older boxes more extensively than the newly deployed ones. 
 
 ## d. 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 # Clean data 
 nest_boxes <- nest_boxes |> 
   mutate(
@@ -185,7 +185,7 @@ kable(model_table, align = "c")
 ```
 
 ## e. 
-```{r, echo = TRUE}
+```{r, echo = TRUE, message = FALSE, warning = FALSE}
 
 # Run all models (no output shown)
 model_1 <- glm(sp ~ 1, data = nest_boxes, family = "binomial")                            # Null model
@@ -196,7 +196,7 @@ model_4 <- glm(sp ~ edge_distance, data = nest_boxes, family = "binomial")      
 ```
 
 ## f. 
-```{r model1-diagnostics}
+```{r model1-diagnostics, message = FALSE, warning = FALSE}
 # Simulate residuals for the null model
 sim_1 <- simulateResiduals(fittedModel = model_1)
 
@@ -205,7 +205,7 @@ plot(sim_1, main = "", annotate = FALSE)
 
 ```
 
-```{r model2-diagnostics}
+```{r model2-diagnostics, message = FALSE, warning = FALSE}
 # Simulate residuals for the model with interaction between season and edge_distance
 sim_2 <- simulateResiduals(fittedModel = model_2)
 
@@ -214,7 +214,7 @@ plot(sim_2, main = "", annotate = FALSE)
 
 ```
 
-```{r model3-diagnostics}
+```{r model3-diagnostics, message = FALSE, warning = FALSE}
 # Simulate residuals for the model with only season as a predictor
 sim_3 <- simulateResiduals(fittedModel = model_3)
 
@@ -223,7 +223,7 @@ plot(sim_3, main = "", annotate = FALSE)
 
 ```
 
-```{r model4-diagnostics}
+```{r model4-diagnostics, message = FALSE, warning = FALSE}
 # Simulate residuals for the model with only edge_distance as a predictor
 sim_4 <- simulateResiduals(fittedModel = model_4)
 
@@ -233,7 +233,7 @@ plot(sim_4, main = "", annotate = FALSE)
 ```
 
 ## g. 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 # Compare AIC values for all models
 aic_results <- AIC(model_1, model_2, model_3, model_4)
 
@@ -244,7 +244,7 @@ print(aic_results)
 The best model as determined by Akaike’s Information Criterion (AIC) was model 2, the saturated model, which included both season and edge distance as predictors, as well as their interaction. This model had the lowest AIC value (226.85), indicating it best balances model fit and complexity. The response variable in this model was nest box occupancy by Swift Parrots (1 = occupied, 0 = not occupied).
 
 ## h. 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 # Generate prediction data across edge distances for each season
 new_data <- expand.grid(
   edge_distance = seq(min(nest_boxes$edge_distance), max(nest_boxes$edge_distance), length.out = 100),
@@ -293,7 +293,7 @@ This figure shows model-predicted probabilities of Swift Parrot (Lathamus discol
 Data source: Stojanovic, Dejan et al. (2021). Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird [Dataset]. Dryad. https://doi.org/10.5061/dryad.83bk3j9sb 
 
 ## j. 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 # Create a new dataframe for prediction at 0 m and 900 m for each season
 new_data <- expand.grid(
   season = factor(c(2016, 2019), levels = levels(nest_boxes$season)),
@@ -316,3 +316,22 @@ new_data
 ## k. 
 The predicted probability of Swift Parrot nest box occupancy was highest at the forest edge (0 m) in 2016 (approximately 54%) and lowest at 900 m from the forest edge in both seasons (around 9%). Between seasons, predicted occupancy at the edge dropped in 2019 to about 24%, suggesting reduced use over time. As distance from the forest edge increased, the likelihood of occupancy consistently decreased, especially in 2016. This pattern suggests that Swift Parrots prefer nest boxes near forest edges, likely because these areas provide better access to foraging resources or cover. In contrast, Common Starlings showed the opposite trend in the study, becoming more dominant in boxes farther from the forest edge, especially as the boxes aged, highlighting the biological importance of carefully managing box placement to avoid unintentional support of invasive competitors.
 
+# Part 4: 
+
+## a. 
+I made a lot of changes to my affective visualization after workshop 9 so here is the updated version:
+![Affective visualization of sleep onset time by day and activity goal](Rplot.png)
+How are the visualizations different from each other in the way you have represented your data?
+My affective visualization from Homework 3 is more about emotion and aesthetics — I used color and borders to show patterns in how fast I fell asleep and whether I met my activity goal. The exploratory visuals from Homework 2 were more straightforward: a boxplot and a scatterplot, both meant to show relationships clearly and numerically. The affective one was more artistic, while the others were made to analyze.
+
+What similarities do you see between all your visualizations?
+All of them are trying to answer the same basic question: does more activity help me fall asleep faster? Whether I showed it through colored squares or dots on a plot, they all look at that connection between physical movement and sleep onset.
+
+What patterns do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?
+In the affective plot, I noticed that the lighter blue squares (faster sleep onset) often had gold borders, meaning I hit my step goal on those days. In the boxplot, I saw a lower median fall-asleep time on goal days, which kind of backs that up. And in the scatterplot, there was a small downward trend — not super strong, but it did look like more steps led to falling asleep faster. So the pattern was pretty consistent across all three, just shown in different ways.
+
+What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions?
+Someone in workshop mentioned I should label my key more clearly, so I made sure to add a better title to the color scale for the affective visualization. I also changed the way I framed the borders to be more visually consistent. I didn’t add numbers to the heatmap though — I decided to keep it feeling more intuitive instead of statistical since that was kind of the whole point of the piece.
+
+## b. 
+I was there!
