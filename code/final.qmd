@@ -319,7 +319,7 @@ new_data
 ## k. 
 The predicted probability of Swift Parrot nest box occupancy was highest at the forest edge (0 m) in 2016 (approximately 54%) and lowest at 900 m from the forest edge in both seasons (around 9%). Between seasons, predicted occupancy at the edge dropped in 2019 to about 24%, suggesting reduced use over time. As distance from the forest edge increased, the likelihood of occupancy consistently decreased, especially in 2016. This pattern suggests that Swift Parrots prefer nest boxes near forest edges, likely because these areas provide better access to foraging resources or cover. In contrast, Common Starlings showed the opposite trend in the study, becoming more dominant in boxes farther from the forest edge, especially as the boxes aged, highlighting the biological importance of carefully managing box placement to avoid unintentional support of invasive competitors.
 
-# Part 4: 
+# Part 4: Affective and Exploratory Visualizations
 
 ## a. 
 I made a lot of changes to my affective visualization after workshop 9 so here is the updated version:
