@@ -39,7 +39,6 @@ nest_boxes <- read_csv(here("Data", "occdist.csv"))
 # Clean column names for consistency
 nest_boxes <- nest_boxes |> 
   clean_names()
-glimpse(nest_boxes)
 ```
 
 # Problem 1. Research Writing
@@ -65,6 +64,8 @@ We found that annual total nitrogen load increased with distance from the riverâ
 We found that average nitrogen load differed significantly among sources, suggesting some sources (like  fertilizer or wastewater) may contribute more nitrogen to the system than others. (One-way ANOVA, F = test statistic, df = degrees of freedom, p = 0.02, Î± = significance level). 
 
 # Problem 2. Data Visualization 
+
+## a. 
 ```{r CLean Data, include=TRUE, message = FALSE, warning = FALSE}
 # Clean and summarize SST data to match required structure
 sst_clean <- sst |> 
@@ -86,6 +87,7 @@ slice_sample(sst_clean, n = 5)
 str(sst_clean)
 ```
 
+## b. 
 ```{r Create visualization, include=TRUE, message = FALSE, warning = FALSE}
 
 # Filter the subset of years shown in the original figure
@@ -287,6 +289,7 @@ ggplot(nest_boxes, aes(x = edge_distance, y = sp, color = season)) +
   )
 
 ```
+
 ## i. 
 Figure 1. Predicted Probability of Swift Parrot Nest Box Occupancy by Distance from Forest Edge and Year.
 This figure shows model-predicted probabilities of Swift Parrot (Lathamus discolor) nest box occupancy as a function of distance from the forest edge in 2016 and 2019. Solid lines represent predictions from a binomial GLM with an interaction between year (season) and distance, and shaded ribbons indicate 95% confidence intervals. Points represent the observed occupancy data (1 = occupied, 0 = unoccupied), jittered for visibility. Occupancy probability declines with increasing distance, with higher probabilities closer to the forest edge in 2016 than in 2019.
