@@ -322,15 +322,19 @@ The predicted probability of Swift Parrot nest box occupancy was highest at the 
 I made a lot of changes to my affective visualization after workshop 9 so here is the updated version:
 ![Affective visualization of sleep onset time by day and activity goal](Rplot.png)
 How are the visualizations different from each other in the way you have represented your data?
+
 My affective visualization from Homework 3 is more about emotion and aesthetics — I used color and borders to show patterns in how fast I fell asleep and whether I met my activity goal. The exploratory visuals from Homework 2 were more straightforward: a boxplot and a scatterplot, both meant to show relationships clearly and numerically. The affective one was more artistic, while the others were made to analyze.
 
 What similarities do you see between all your visualizations?
+
 All of them are trying to answer the same basic question: does more activity help me fall asleep faster? Whether I showed it through colored squares or dots on a plot, they all look at that connection between physical movement and sleep onset.
 
 What patterns do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?
+
 In the affective plot, I noticed that the lighter blue squares (faster sleep onset) often had gold borders, meaning I hit my step goal on those days. In the boxplot, I saw a lower median fall-asleep time on goal days, which kind of backs that up. And in the scatterplot, there was a small downward trend — not super strong, but it did look like more steps led to falling asleep faster. So the pattern was pretty consistent across all three, just shown in different ways.
 
 What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions?
+
 Someone in workshop mentioned I should label my key more clearly, so I made sure to add a better title to the color scale for the affective visualization. I also changed the way I framed the borders to be more visually consistent. I didn’t add numbers to the heatmap though — I decided to keep it feeling more intuitive instead of statistical since that was kind of the whole point of the piece.
 
 ## b. 
